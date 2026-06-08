@@ -40,12 +40,6 @@ It tests how varying credit approval thresholds directly impact a logistic regre
 - 0.69 ROC-AUC Score: The model has a moderate ability to rank risks, i.e the model will assign higher-risk probability to the correct individual 69% of the time (unchanged as sorting power remains constant across thresholds)  
 - 33% Accuracy: As mentioned above, this drop is to be expected as it rejects far more applicants than higher thresholds  
 
-
-### Authors
-
-My name is [Christopher LoCascio](https://github.com/CL04A). I am an undergraduate student at the [University of Arkansas at Fayetteville](https://www.uark.edu/) pursuing a B.S in Computer Science and a B.A in Economics. This project serves as an introduction into data analytics and machine learning
-
-
 ## Software and Libraries used
 
 ### Python
@@ -75,7 +69,9 @@ Imbalanced Learn relies on Scikit-learn to handle unbalanced datasets. It was us
 >>> pip install imblearn
 ```
 
+### Authors
 
+My name is [Christopher LoCascio](https://github.com/CL04A). I am an undergraduate student at the [University of Arkansas at Fayetteville](https://www.uark.edu/) pursuing a B.S in Computer Science and a B.A in Economics. This project serves as an introduction into data analytics and machine learning
 
 
 
