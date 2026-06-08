@@ -1,7 +1,7 @@
 # Credit Risk and Loss Optimization Model
 
 An end-to-end risk analytics pipeline using the [Default of Credit Card Clients Dataset](https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset?resource=download).  
-It tests how varying credit approval thresholds directly impact a logistic regression models ability to adequately identify a lendee's risk of defaulting. It can further be used to evaluate how an institution's risk mitigation, customer acquisition friction, and bottom-line portfolio profitability can change by changing this threshold.
+It tests how varying credit approval thresholds directly impact a logistic regression model's ability to adequately identify a lendee's risk of defaulting. It can further be used to evaluate how an institution's risk mitigation, customer acquisition friction, and bottom-line portfolio profitability can change by changing this threshold.
 
 
 
