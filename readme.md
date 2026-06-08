@@ -14,8 +14,8 @@ It tests how varying credit approval thresholds directly impact a logistic regre
 
 ## Results and Interpretations  
 ### 0.50 Threshold  
-- 870 False Negatives: The model approved 422 borrowers who ended up defaulting  
-- 1878 False Positives: The model flagged 4117 good borrowers   
+- 870 False Negatives: The model approved 870 borrowers who ended up defaulting  
+- 1878 False Positives: The model flagged 1878 good borrowers   
 - 56% Recall: The model caught 56% of the actual defaulters, more accurate than not but 56% leaves the lender very exposed to credit losses  
 - 37% Precision: Out of everyone flagged by the model, only 37% actually defaulted, meaning the threshold for the model is highly risk-averse  
 - 0.45 F1-Score: Indicates the model is struggling to find a healthy mix between keeping default numbers down and approving safe accounts  
@@ -38,7 +38,7 @@ It tests how varying credit approval thresholds directly impact a logistic regre
 - 24% Precision: Out of everyone flagged by the model, only 24% actually defaulted, meaning this extremely aggressive threshold heavily restricts lending volume and over-penalizes safe applicants  
 - 0.38 F1-Score: Indicates the model is struggling to find a healthy mix, dropping further because the massive wave of false alarms outweighed the excellent gains in catching defaults  
 - 0.69 ROC-AUC Score: The model has a moderate ability to rank risks, i.e the model will assign higher-risk probability to the correct individual 69% of the time (unchanged as sorting power remains constant across thresholds)  
-- 33% Accuracy: As mentioned above, this drop is to be expected as it rejects far more applicants than higher thresholds  
+- 33% Accuracy: As mentioned above, this drop is to be expected as it approves far fewer applicants than higher thresholds  
 
 ## Software and Libraries used
 
