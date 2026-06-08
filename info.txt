@@ -1,0 +1,101 @@
+-- DATASET VARIABLE INFO:
+
+ID: ID of each client
+LIMIT_BAL: Amount of given credit in NT dollars (includes individual and family/supplementary credit)
+SEX: Gender (1=male, 2=female)
+EDUCATION: (1=graduate school, 2=university, 3=high school, 4=others, 5=unknown, 6=unknown)
+MARRIAGE: Marital status (1=married, 2=single, 3=others)
+AGE: Age in years
+PAY_0: Repayment status in September, 2005 (-1=pay duly, 1=payment delay for one month, 2=payment delay for two months, … 8=payment delay for eight months, 9=payment delay for nine months and above)
+PAY_2: Repayment status in August, 2005 (scale same as above)
+PAY_3: Repayment status in July, 2005 (scale same as above)
+PAY_4: Repayment status in June, 2005 (scale same as above)
+PAY_5: Repayment status in May, 2005 (scale same as above)
+PAY_6: Repayment status in April, 2005 (scale same as above)
+BILL_AMT1: Amount of bill statement in September, 2005 (NT dollar)
+BILL_AMT2: Amount of bill statement in August, 2005 (NT dollar)
+BILL_AMT3: Amount of bill statement in July, 2005 (NT dollar)
+BILL_AMT4: Amount of bill statement in June, 2005 (NT dollar)
+BILL_AMT5: Amount of bill statement in May, 2005 (NT dollar)
+BILL_AMT6: Amount of bill statement in April, 2005 (NT dollar)
+PAY_AMT1: Amount of previous payment in September, 2005 (NT dollar)
+PAY_AMT2: Amount of previous payment in August, 2005 (NT dollar)
+PAY_AMT3: Amount of previous payment in July, 2005 (NT dollar)
+PAY_AMT4: Amount of previous payment in June, 2005 (NT dollar)
+PAY_AMT5: Amount of previous payment in May, 2005 (NT dollar)
+PAY_AMT6: Amount of previous payment in April, 2005 (NT dollar)
+default.payment.next.month: Default payment (1=yes, 0=no)
+
+SOURCED FROM:
+Learning, U. M., & Kim, E. (2016, November 3). Default of credit card clients dataset. Kaggle. https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset?resource=download
+
+-- LIBRARIES USED:
+Pandas & Numpy: standard toolkits for data science, pandas handles tabular data and numpy handles mathematical operations
+Scikit-learn:
+    a. StandardScaler: A data normalizer that rescales numerial values, allows larger numbers to not be considered more important (i.e. age can only go so high, but credit limit can go far higher, standardscaler ensures that they are treated equally)
+    b. train_test_split: a data partitioner that splits data into a training portion to train the model and a testing portion to test the model
+    c. SMOTE: an oversampling tool designed to handle imbalanced datasets like this one (never applied to test sets, only training sets)
+    d. metrics: functions used to create a "scorecard" of model effectiveness
+
+
+-- ANALYSIS STEPS:
+1. CLEANING DATA
+    a. Some rows have undocumented values (e.g. 0), so need to regroup into the 'others' categories
+2. DATA CONVERSION
+    a. Raw data is in NT$, so need to convert into ratios like credit util
+    b. Use something like SMOTE to account for minorities
+3. REWRITE SCALING TO BE CONSISTENT
+    a. Use a scaler (StandardScaler) on the training data
+    b. Apply the scale to both sets 
+4. MODEL
+    a. Train a Logistic Regression model 
+5. EVALUATION
+    a. Generate probabilities 
+    b. Calculate ROC-AUC
+    c. Confusion Matrix
+    d. identify high-risk data points
+
+-- INTERPRETING RESULTS
+tn: true negatives, good borrowers that the model identified correctly
+tp: true positives, high-risk borrowers that the model identified correctly
+fp: false positives, good borrowers that the model identified incorrectly
+fn: false negatives, high-risk borrwers that the model identified incorrectly
+
+recall: sensitivity to default, i.e. of all the people in the dataset that actually defaulted, how many were successfully identified by the model(as a percentage), want this to be as high as possible
+precision: of all the borrowers that the model predicted would default, how many actually did
+roc-auc score: Area Under the ROC curve, the model's overall ability to sort borrowers from high-risk to low-risk, a higher value means a better sorting power
+f1-score: balanced average between precision and recall, i.e because the dataset has far more non-defaulters than defaulters, it could just say no one would default and be highly accurate, the f1-score forces the model to balance catching defaults without hurting precision
+
+-- INTERPRETING MY MODELS SPECIFIC RESULTS FROM TEST 1 (THRESHOLD OF 0.50):
+870 False Negatives: The model approved 870 borrowers who ended up defaulting
+1878 False Positives: The model flagged 1878 good borrowers
+Row 1: high-risk applicants
+    a. 56% Recall: The model caught 56% of the actual defaulters, more accurate than not but 56% leaves the lender very exposed to credit losses
+    b. 37% Precision: Out of everyone flagged by the model, only 37% actually defaulted, meaning the threshold for the model is highly risk-averse
+    c. 0.45 F1-Score: Indicates the model is struggling to find a healthy mix between keeping default numbers down and approving safe accounts
+0.69 ROC-AUC Score: The model has a moderate ability to rank risks, i.e the model will assign higher-risk probability to the correct individual 69% of the time
+69% Accuracy: Looks good, however as previously mentioned, the amount of non-defaulters far outranks defaulters, so a model could just guess "no default" for everyone and be quite accurate, so this will be ignored 
+
+-- INTERPRETING MY MODELS SPECIFIC RESULTS FROM TEST 2 (THRESHOLD OF 0.30):
+422 False Negatives: The model approved 422 borrowers who ended up defaulting
+4117 False Positives: The model flagged 4117 good borrowers
+Row 1: high-risk applicants
+    a. 79% Recall: The model caught 79% of the actual defaulters, providing much stronger portfolio protection, though 21% still leaves some exposure to credit losses
+    b. 28% Precision: Out of everyone flagged by the model, only 28% actually defaulted, meaning this lower threshold is extremely risk-averse and heavily penalizes applicant approval rates
+    c. 0.41 F1-Score: Indicates the model is still struggling to find a healthy mix, dropping slightly because the aggressive gain in catching defaults was offset by a massive wave of false alarms
+0.69 ROC-AUC Score: The model has a moderate ability to rank risks, i.e the model will assign higher-risk probability to the correct individual 69% of the time (unchanged as sorting power remains constant across thresholds)
+50% Accuracy: Looks significantly worse on paper, however as previously mentioned, raw accuracy is deceptive due to class imbalance; this drop is a deliberate business trade-off where overall correctness was sacrificed to actively mitigate catastrophic credit defaults
+
+-- INTERPRETING MY MODELS SPECIFIC RESULTS FROM TEST 3 (THRESHOLD OF 0.15):
+160 False Negatives: The model approved 160 borrowers who ended up defaulting
+5888 False Positives: The model flagged 5888 good borrowers
+Row 1: high-risk applicants
+    a. 92% Recall: The model caught 92% of the actual defaulters, providing maximum portfolio protection against catastrophic credit losses, leaving only minimal exposure
+    b. 24% Precision: Out of everyone flagged by the model, only 24% actually defaulted, meaning this extremely aggressive threshold heavily restricts lending volume and over-penalizes safe applicants
+    c. 0.38 F1-Score: Indicates the model is struggling to find a healthy mix, dropping further because the massive wave of false alarms outweighed the excellent gains in catching defaults
+0.69 ROC-AUC Score: The model has a moderate ability to rank risks, i.e the model will assign higher-risk probability to the correct individual 69% of the time (unchanged as sorting power remains constant across thresholds)
+33% Accuracy: Looks significantly worse on paper, however as previously mentioned, raw accuracy is deceptive due to class imbalance; this drop is a deliberate business trade-off where overall correctness was sacrificed to actively mitigate catastrophic credit defaults
+
+-- RISK DRIVERS 
+Positive Coefficients: as the value goes up, probability of defaulting goes up
+Negative Coefficients: as the value goes up, probability of defaulting goes down

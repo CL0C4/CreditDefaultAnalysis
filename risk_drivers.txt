@@ -1,0 +1,12 @@
+
+--- Top 10 Credit Risk Drivers ---        Feature  Coefficient
+5         PAY_0     0.671779
+3      MARRIAGE    -0.569424
+1           SEX    -0.414757
+2     EDUCATION    -0.390711
+11    BILL_AMT1    -0.373187
+0     LIMIT_BAL    -0.276332
+17     PAY_AMT1    -0.227445
+18     PAY_AMT2    -0.223236
+12    BILL_AMT2     0.221906
+23  CREDIT_UTIL    -0.160537

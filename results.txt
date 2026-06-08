@@ -1,0 +1,52 @@
+0.50 Threshold:
+Evaluation:
+              precision    recall  f1-score   support
+
+           0       0.85      0.73      0.79      7006
+           1       0.37      0.56      0.45      1990
+
+    accuracy                           0.69      8996
+   macro avg       0.61      0.65      0.62      8996
+weighted avg       0.75      0.69      0.71      8996
+Metrics:
+ROC-AUC Score: 0.6913
+Recall (Sensitivity): 0.5628
+False Negatives (Missed Defaults): 870
+False Positives (Unnecessary Rejections): 1878
+
+
+0.3 Threshold:
+Evaluation:
+              precision    recall  f1-score   support
+
+           0       0.87      0.41      0.56      7006
+           1       0.28      0.79      0.41      1990
+
+    accuracy                           0.50      8996
+   macro avg       0.57      0.60      0.48      8996
+weighted avg       0.74      0.50      0.53      8996
+
+Metrics:
+ROC-AUC Score: 0.6913
+Recall (Sensitivity): 0.7879
+False Negatives (Missed Defaults): 422
+False Positives (Unnecessary Rejections): 4117
+
+
+0.15 Threshold:
+Evaluation:
+              precision    recall  f1-score   support
+
+           0       0.87      0.16      0.27      7006
+           1       0.24      0.92      0.38      1990
+
+    accuracy                           0.33      8996
+   macro avg       0.56      0.54      0.32      8996
+weighted avg       0.73      0.33      0.29      8996
+
+Metrics:
+ROC-AUC Score: 0.6913
+Recall (Sensitivity): 0.9196
+False Negatives (Missed Defaults): 160
+False Positives (Unnecessary Rejections): 5888
+
