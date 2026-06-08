@@ -15,9 +15,9 @@ It tests how varying credit approval thresholds directly impact a logistic regre
 ## Results and Interpretations
 ### 0.50 Threshold
 Row 1: high-risk applicants
-    a. 56% Recall: The model caught 56% of the actual defaulters, more accurate than not but 56% leaves the lender very exposed to credit losses
-    b. 37% Precision: Out of everyone flagged by the model, only 37% actually defaulted, meaning the threshold for the model is highly risk-averse
-    c. 0.45 F1-Score: Indicates the model is struggling to find a healthy mix between keeping default numbers down and approving safe accounts
+&emsp;a. 56% Recall: The model caught 56% of the actual defaulters, more accurate than not but 56% leaves the lender very exposed to credit losses
+&emsp;b. 37% Precision: Out of everyone flagged by the model, only 37% actually defaulted, meaning the threshold for the model is highly risk-averse
+&emsp;c. 0.45 F1-Score: Indicates the model is struggling to find a healthy mix between keeping default numbers down and approving safe accounts
 0.69 ROC-AUC Score: The model has a moderate ability to rank risks, i.e the model will assign higher-risk probability to the correct individual 69% of the time
 69% Accuracy: Looks good, however as previously mentioned, the amount of non-defaulters far outranks defaulters, so a model could just guess "no default" for everyone and be quite accurate, so this will be ignored 
 
