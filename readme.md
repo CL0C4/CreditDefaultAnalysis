@@ -14,9 +14,8 @@ It tests how varying credit approval thresholds directly impact a logistic regre
 
 ## Results and Interpretations  
 ### 0.50 Threshold  
-870 False Negatives: The model approved 422 borrowers who ended up defaulting  
-1878 False Positives: The model flagged 4117 good borrowers  
-Row 1: high-risk applicants  
+- 870 False Negatives: The model approved 422 borrowers who ended up defaulting  
+- 1878 False Positives: The model flagged 4117 good borrowers   
 - 56% Recall: The model caught 56% of the actual defaulters, more accurate than not but 56% leaves the lender very exposed to credit losses  
 - 37% Precision: Out of everyone flagged by the model, only 37% actually defaulted, meaning the threshold for the model is highly risk-averse  
 - 0.45 F1-Score: Indicates the model is struggling to find a healthy mix between keeping default numbers down and approving safe accounts  
@@ -24,9 +23,8 @@ Row 1: high-risk applicants
 - 69% Accuracy: Looks good, however as previously mentioned, the amount of non-defaulters far outranks defaulters, so a model could just guess "no default" for everyone and be quite accurate, so this will be ignored  
 
 ### 0.30 Threshold  
-422 False Negatives: The model approved 422 borrowers who ended up defaulting  
-4117 False Positives: The model flagged 4117 good borrowers  
-Row 1: high-risk applicants  
+- 422 False Negatives: The model approved 422 borrowers who ended up defaulting  
+- 4117 False Positives: The model flagged 4117 good borrowers  
 - 79% Recall: The model caught 79% of the actual defaulters, providing much stronger portfolio protection, though 21% still leaves some exposure to credit losses  
 - 28% Precision: Out of everyone flagged by the model, only 28% actually defaulted, meaning this lower threshold is extremely risk-averse and heavily penalizes applicant approval rates  
 - 0.41 F1-Score: Indicates the model is still struggling to find a healthy mix, dropping slightly because the aggressive gain in catching defaults was offset by a massive wave of false alarms  
@@ -34,9 +32,8 @@ Row 1: high-risk applicants
 - 50% Accuracy: Looks significantly worse on paper, however as previously mentioned, raw accuracy is deceptive, and this drop is to be expected as the lower threshold seeks to mitigate risk, not maximize overall correctness  
 
 ### 0.15 Threshold
-160 False Negatives: The model approved 160 borrowers who ended up defaulting  
-5888 False Positives: The model flagged 5888 good borrowers  
-Row 1: high-risk applicants  
+- 160 False Negatives: The model approved 160 borrowers who ended up defaulting  
+- 5888 False Positives: The model flagged 5888 good borrowers   
 - 92% Recall: The model caught 92% of the actual defaulters, providing maximum portfolio protection against catastrophic credit losses, leaving only minimal exposure  
 - 24% Precision: Out of everyone flagged by the model, only 24% actually defaulted, meaning this extremely aggressive threshold heavily restricts lending volume and over-penalizes safe applicants  
 - 0.38 F1-Score: Indicates the model is struggling to find a healthy mix, dropping further because the massive wave of false alarms outweighed the excellent gains in catching defaults  
@@ -77,3 +74,8 @@ Imbalanced Learn relies on Scikit-learn to handle unbalanced datasets. It was us
 ```py
 >>> pip install imblearn
 ```
+
+
+
+
+
