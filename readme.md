@@ -8,7 +8,7 @@ It tests how varying credit approval thresholds directly impact a logistic regre
 ## Features
 
 - Utilizes a [Logistic Regression Model](https://www.geeksforgeeks.org/machine-learning/understanding-logistic-regression/) to calculate the probability of a default based on Credit Utilization and Payment Ratio
-- Implemented and documented the results using 3 different thresholds to ascertain how a stricter, more risk-averse threshold affects customer approval rates, as well as False Positives(Unnecessary Rejections) and False Negatives(Missed Defaults)
+- Implements and documents the results using different thresholds to ascertain how a stricter, more risk-averse threshold affects customer approval rates, as well as False Positives(Unnecessary Rejections) and False Negatives(Missed Defaults)
 - Uses StandardScaler to ensure that naturally larger numbers are not necessarily treated has more important (i.e. ensures that credit limit, which could scale to 100,000+, is not immediately deemed more important than age, which will realistically only approach ~80)
 
 
