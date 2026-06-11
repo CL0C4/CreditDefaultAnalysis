@@ -60,6 +60,7 @@ Scikit-learn is a machine learning library for Python. It provided the backbone 
 - Classification Report
 - ROC_AUC Score
 - Confusion Matrix
+- *note: random_state=42 has no mathematical advantage over any other integers. It is just an often used number in reference to Hitchhiker's Guide to the Galaxy, feel free to change this value
 ```py
 >>> pip install scikit-learn
 ```
